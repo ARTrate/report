@@ -125,20 +125,30 @@
   \item effect of music on heart\cite{dousty,shin,tsuroka,inesta2008heart}
 \end{itemize}
 
-\section{Technical Background Stuff}
+\section{Technical Background}
 
 \subsection{Heart Rate}
-\begin{itemize}
-  \item PPG
-\end{itemize}
+The heart rate is measured using the ``photopletysmogram'' technology (PPG).
+It uses light emiting diodes to iluminate a part of skin, e.g. on the wrist, upper arm
+or finger tip and measures the light absorbtion of the skin with a photo diode. The frequency
+between peaks of the absorbtion translates to the heart rate.
+
+If it is compared to other methods it has the big advantage that it is very easy and fast
+to use, there is no necessity for chest straps or multiple electrodes. It is widely used
+in modern fitness and lifestyle devices like sports trackers and smart watches.
 
 \subsection{Respiration Rate}
-\begin{itemize}
-  \item Based on Kurscheidt\cite{kurscheidt2016open}.
-  \item Acceleration Sensors
-\end{itemize}
 
-\section{Equipment}
+To measure the respiration rate we use a three dimensional accelerometer. The recorded
+acceleretion values are analysed using a setup designed by Maximilian Kurscheidt for
+the surveilance of hospital patients\cite{kurscheidt2016open}.
+
+At first the data is filtered via a bandpass filter, removing frequencies lower and higher
+than a healthy persons normal respiration rate bandwidth. Afterwards, the signal goes through
+Fast Fourier Transformation and the spectral powers are calculated. From this the frequency is
+derived.
+
+\section{Equipment \& Setup}
 
 \subsection{commercial}
 \begin{itemize}
