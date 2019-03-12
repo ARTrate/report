@@ -124,7 +124,6 @@
 \begin{itemize}
   \item effect of music on heart\cite{dousty,shin,tsuroka,inesta2008heart}
 \end{itemize}
-
 \section{Technical Background}
 
 \subsection{Heart Rate}
@@ -152,7 +151,8 @@ derived. %TODO: ESE-People: explain & specify
 \section{Equipment \& Setup}
 
 The main component of our setup is our OSC\footnote{\url{https://en.wikipedia.org/wiki/Open_Sound_Control}}
-server. It is written in Python3 and uses the numpy and scipy libraries for signal processing.
+server\footnote{\url{https://github.com/ARTrate/Server}}. It is written in Python3 and uses the numpy and
+scipy libraries for signal processing.
 We chose OSC because it is very easy to implement while being fairly versatile in regard to
 the payloads it supports. The server can serve in two different ways: On the one hand it can
 focus on the signal processing only while forwarding the processed data via OSC to arbitrary
@@ -166,11 +166,11 @@ listener might already have at hand and another custom build solution. Only the 
 the recording of the respiration rate.
 
 \subsection{commercial}
-\begin{itemize}
-  \item standard fitness HR Sensor supporting BLE
-  \item Android app
-  \item OSC Server
-\end{itemize}
+
+The commercial setup consists of any heart rate sensor supporting the Bluetooth Low Energy
+standard. These sensors are connected to an Android phone running our app\footnote{\url{https://github.com/ARTrate/ARTrate-Android}}.
+The app forwards the data from the sensor via OSC to a specified network address. Because
+the data is send via UDP the app is not aware of possible packet drops or a wrongly set address.
 
 \subsection{custom}
 \begin{itemize}
