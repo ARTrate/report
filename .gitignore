@@ -242,3 +242,4 @@ TSWLatexianTemp*
 *.spl
 
 report-artrate.pdf
+.vscode/settings.json

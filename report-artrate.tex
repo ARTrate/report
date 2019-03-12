@@ -108,7 +108,7 @@
   the rate of respiration. These signals can be measured from musicians and
   there listeners to influence sound, light or other effects utilized during a
   performance. During this course, we built a hard- and software setup to measure
-  heart and respiration rate, postprocess it and distribute the extracted information
+  heart and respiration rate, post process it and distribute the extracted information
   via open standards to third party applications.
 \end{abstract}
 
@@ -128,10 +128,11 @@
 \section{Technical Background}
 
 \subsection{Heart Rate}
+
 The heart rate is measured using the ``photopletysmogram'' technology (PPG).
-It uses light emiting diodes to iluminate a part of skin, e.g. on the wrist, upper arm
-or finger tip and measures the light absorbtion of the skin with a photo diode. The frequency
-between peaks of the absorbtion translates to the heart rate.
+It uses light emitting diodes to illuminate a part of skin, e.g. on the wrist, upper arm
+or finger tip and measures the light absorption of the skin with a photo diode. The frequency
+between peaks of the absorption translates to the heart rate. %TODO: Sensorpeople: explain & specify
 
 If it is compared to other methods it has the big advantage that it is very easy and fast
 to use, there is no necessity for chest straps or multiple electrodes. It is widely used
@@ -140,15 +141,29 @@ in modern fitness and lifestyle devices like sports trackers and smart watches.
 \subsection{Respiration Rate}
 
 To measure the respiration rate we use a three dimensional accelerometer. The recorded
-acceleretion values are analysed using a setup designed by Maximilian Kurscheidt for
-the surveilance of hospital patients\cite{kurscheidt2016open}.
+acceleration values are analysed using a setup designed by Maximilian Kurscheidt for
+the surveillance of hospital patients\cite{kurscheidt2016open}.
 
 At first the data is filtered via a bandpass filter, removing frequencies lower and higher
 than a healthy persons normal respiration rate bandwidth. Afterwards, the signal goes through
 Fast Fourier Transformation and the spectral powers are calculated. From this the frequency is
-derived.
+derived. %TODO: ESE-People: explain & specify
 
 \section{Equipment \& Setup}
+
+The main component of our setup is our OSC\footnote{\url{https://en.wikipedia.org/wiki/Open_Sound_Control}}
+server. It is written in Python3 and uses the numpy and scipy libraries for signal processing.
+We chose OSC because it is very easy to implement while being fairly versatile in regard to
+the payloads it supports. The server can serve in two different ways: On the one hand it can
+focus on the signal processing only while forwarding the processed data via OSC to arbitrary
+effect engines, e.g. Ableton. If no such third party software is available the server supports
+a variation of effects to demonstrate the capabilities of the sensor setups: There are two sound
+effect settings based on the heart rate, a visual representation of the history of the heart rate
+and a color change of the history representation based on the respiration rate. %TODO: Tamara: specify
+
+The data is gathered by two sensor setups, one based on commercial products which an artist or
+listener might already have at hand and another custom build solution. Only the later supports
+the recording of the respiration rate.
 
 \subsection{commercial}
 \begin{itemize}
