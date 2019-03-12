@@ -123,12 +123,15 @@
 \section{Introduction}
 \begin{itemize}
   \item effect of music on heart\cite{dousty,shin,tsuroka,inesta2008heart}
+  \item read heart and respiration rate of artist and/or listener
+  \item generate effects based on bio signals
+  \item try to control elements using by deliberately changing the respiration rate
 \end{itemize}
 \section{Technical Background}
 
 \subsection{Heart Rate}
 
-The heart rate is measured using the ``photopletysmogram'' technology (PPG).
+The heart rate is mainly measured using the ``photopletysmogram'' technology (PPG).
 It uses light emitting diodes to illuminate a part of skin, e.g. on the wrist, upper arm
 or finger tip and measures the light absorption of the skin with a photo diode. The frequency
 between peaks of the absorption translates to the heart rate. %TODO: Sensorpeople: explain & specify
@@ -136,6 +139,9 @@ between peaks of the absorption translates to the heart rate. %TODO: Sensorpeopl
 If it is compared to other methods it has the big advantage that it is very easy and fast
 to use, there is no necessity for chest straps or multiple electrodes. It is widely used
 in modern fitness and lifestyle devices like sports trackers and smart watches.
+
+However, it is possible to use our infrastructure with sensors using other technologies
+as long as they support the Bluetooth Low Energy standard.
 
 \subsection{Respiration Rate}
 
@@ -185,27 +191,14 @@ the data is send via UDP the app is not aware of possible packet drops or a wron
 
 \section{Results}
 
-
-% \marginpar{%
-  % \vspace{-45pt} \fbox{%
-    % \begin{minipage}{0.925\marginparwidth}
-      % \textbf{Good Utilization of the Side Bar} \\
-      % \vspace{1pc} \textbf{Preparation:} Do not change the margin
-      % dimensions and do not flow the margin text to the
-      % next page. \\
-      % \vspace{1pc} \textbf{Materials:} The margin box must not intrude
-      % or overflow into the header or the footer, or the gutter space
-      % between the margin paragraph and the main left column. The text
-      % in this text box should remain the same size as the body
-      % text. Use the \texttt{{\textbackslash}vspace{}} command to set
-      % the margin
-      % note's position. \\
-      % \vspace{1pc} \textbf{Images \& Figures:} Practically anything
-      % can be put in the margin if it fits. Use the
-      % \texttt{{\textbackslash}marginparwidth} constant to set the
-      % width of the figure, table, minipage, or whatever you are trying
-      % to fit in this skinny space.
-    % \end{minipage}}\label{sec:sidebar} }
+\begin{itemize}
+  \item heart rate of artist slows down when starts playing
+  \item heart rate of listener speeds up on suspension building phases and drops on ``relaxation''
+  \item can be used for effects
+  \item respiration rate works technically, but the bandwidth is very low, so it is hard to get nice effects
+  \item even if it is possible to influence the respiration rate it is not feasible as a device to
+        control the music
+\end{itemize}
 
 \balance{} 
 
