@@ -204,14 +204,30 @@ the data is send via UDP the app is not aware of possible packet drops or a wron
 
 \section{Results}
 
-\begin{itemize}
-  \item heart rate of artist slows down when starts playing
-  \item heart rate of listener speeds up on suspension building phases and drops on ``relaxation''
-  \item can be used for effects
-  \item respiration rate works technically, but the bandwidth is very low, so it is hard to get nice effects
-  \item even if it is possible to influence the respiration rate it is not feasible as a device to
-        control the music
-\end{itemize}
+We have been able to extract both the heart rate and the respiration rate using a hardware setup that can be
+worn easily on the body. Both values are accurate enough for the requirements of our goal, which has been
+effect generation based on the gathered bio signals. However, only the heart rate yields a bandwidth of values
+that is wide enough to be interesting for effects.
+
+The respiration rate does only change in a window between 12 and 16 breaths per minute under normal conditions.
+Furthermore, our implementation can only change its value in integer values, resulting in either a very small
+effect range or sharp, abrupt changes in the effect. %TODO: signalprocessing: explain, peak counting...
+
+While it might be feasible from a technical point of view to control elements of a performance using the respiration
+rate of the performer, it is not feasible to do so from the performing point of view. Our method does not detect
+sudden changes in the respiration, but calculates the average over a fixed time span. Hence it would be necessary
+to keep the respiration rate at a significantly changed value over a prolonged time. This is very hard, we were
+not able to achieve this while focussing only on this task. Doing it while performing on stage would be even harder.
+
+The heart rate has a much wider span of values and can be used for various effects. In our own demonstration we used
+it to change a sound effect based on the range of the value a single sensor provides or based on the gap or the average
+between multiple sensors. Visually we logged the values of every connected sensor and generated graphs showing the
+heart rate over time.
+
+During our test runs two distinctive patterns emerged time and again: First, the heart rate of a performer
+drops significantly after starting the performance. Second, regarding a listener, the heart rate slowly rises
+in ``suspension building'' sections and drops sharply on their conclusion. This could be used to highlight
+breaks in a performance using effects based on the heart rate.
 
 \balance{} 
 
