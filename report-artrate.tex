@@ -40,7 +40,7 @@
 \def\plainkeywords{Bio Signals; Heart Rate; Respiration Rate; Music}
 \def\plaingeneralterms{Documentation, Standardization}
 
-\title{ArtRate: Using Bio Signals To Influence Music}
+\title{ArtRate: Using Bio Signals To Influence Music Performances}
 
 \numberofauthors{4}
 % Notice how author names are alternately typesetted to appear ordered
@@ -128,26 +128,29 @@ respiration rate of the listener \cite{dousty,shin,tsuroka,inesta2008heart}. No 
 that using bio signals as an active component in the artistic context has raised the 
 interest of people working in performing arts. Even though artists have been looking into 
 biosignal-driven art as early as in the 1960s \cite{history_biosignal_art}, the development
-in wearable devices during the recent years has opened up a huge range of new and more
-practical possibilities.
+in wearable devices during the recent years has opened up a huge range of new and, above
+all, more practical possibilities. \\
+In this project, the heart respiration rate of the artist as well as an arbitrary number
+of listeners are measured, recorded and transformed into various effects embedded into the
+artist's performance. By choosing those specific bio signals, this opens up three different
+dimensions: On the one hand, the artist can use the recorded bio data as a form of direct
+feedback from the audience. Secondly, by influencing the performance itself through their
+own body, and respectively through their reaction, the audience functions as a direct feedback
+loop and is, in an exciting way, invited to participate. And lastly, using a controllable
+bio signal such as the respiration rate, provides the additional possibility to trigger specific
+effects deliberately.
 
-
-\begin{itemize}
-  \item read heart and respiration rate of artist and/or listener
-  \item generate effects based on bio signals
-  \item try to control elements using by deliberately changing the respiration rate
-\end{itemize}
 \section{Technical Background}
 
 \subsection{Heart Rate}
 
-The heart rate is mainly measured using the ``photopletysmogram'' technology (PPG).
-It uses light emitting diodes to illuminate a part of skin, e.g. on the wrist, upper arm
+The heart rate is most commonly measured using the ``photopletysmogram'' technology (PPG).
+It uses light emitting diodes to illuminate a patch of skin, e.g. on the wrist, upper arm
 or finger tip and measures the light absorption of the skin with a photo diode. The frequency
 between peaks of the absorption translates to the heart rate. %TODO: Sensorpeople: explain & specify
 
-If it is compared to other methods it has the big advantage that it is very easy and fast
-to use, there is no necessity for chest straps or multiple electrodes. It is widely used
+If it is compared to other methods, it offers the big advantage of being very easy and fast
+to use and not having the necessity for chest straps or multiple electrodes. It is widely used
 in modern fitness and lifestyle devices like sports trackers and smart watches.
 
 However, it is possible to use our infrastructure with sensors using other technologies
@@ -156,37 +159,37 @@ as long as they support the Bluetooth Low Energy standard.
 \subsection{Respiration Rate}
 
 To measure the respiration rate we use a three dimensional accelerometer. The recorded
-acceleration values are analysed using a setup designed by Maximilian Kurscheidt for
+acceleration values are analysed using a setup developed by Maximilian Kurscheidt for
 the surveillance of hospital patients\cite{kurscheidt2016open}.
 
 At first the data is filtered via a bandpass filter, removing frequencies lower and higher
-than a healthy persons normal respiration rate bandwidth. Afterwards, the signal goes through
-Fast Fourier Transformation and the spectral powers are calculated. From this the frequency is
+than a healthy person's normal respiration rate bandwidth. Afterwards, the signal goes through
+Fast Fourier Transformation and the spectral powers are calculated, from which the frequency is
 derived. %TODO: ESE-People: explain & specify
 
 \section{Equipment \& Setup}
 
 The main component of our setup is our OSC\footnote{\url{https://en.wikipedia.org/wiki/Open_Sound_Control}}
-server\footnote{\url{https://github.com/ARTrate/Server}}. It is written in Python3 and uses the numpy and
-scipy libraries for signal processing.
-We chose OSC because it is very easy to implement while being fairly versatile in regard to
-the payloads it supports. The server can serve in two different ways: On the one hand it can
-focus on the signal processing only while forwarding the processed data via OSC to arbitrary
-effect engines, e.g. Ableton. If no such third party software is available the server supports
-a variation of effects to demonstrate the capabilities of the sensor setups: There are two sound
-effect settings based on the heart rate, a visual representation of the history of the heart rate
-and a color change of the history representation based on the respiration rate. %TODO: Tamara: specify
-
-The data is gathered by two sensor setups, one based on commercial products which an artist or
-listener might already have at hand and another custom build solution. Only the latter supports
+server\footnote{\url{https://github.com/ARTrate/Server}}, which is written in Python 3 and uses the numpy and
+scipy libraries for signal processing. As a protocol, OSC is beneficial due to being nearly effortless
+to implement while remaining fairly versatile in regard to the payloads it supports. \\
+The server can serve in two different ways: On the one hand, it can focus solely on data gathering and signal 
+processing while only serving as a gateway, sending the processed data via OSC to arbitrary effect
+engines, e.g. Ableton. This makes the integration simple, especially if the artist can use his/her accustomed software and setups. However, if no such third party software is available or desired, the server supports a variation of effects to demonstrate the capabilities of the sensor setups. It incorporates two rudimentary
+sound effect settings based on the heart rate, a visual representation of the history of the heart rate
+and a color change of the history representation based on the respiration rate.\\
+As the server receives data from multiple entities per bio signal type, it can process them in a 
+configurable way, i.e. using an overall average, the ratio of highest and lowest value or each source
+individually. \\
+The data is gathered by two sensor setups, one based on commercial products, which an artist or
+listener might already have at hand, and another custom-built solution. Only the latter supports
 the recording of the respiration rate.
 
 \subsection{commercial}
 
 The commercial setup consists of any heart rate sensor supporting the Bluetooth Low Energy
-standard. These sensors are connected to an Android phone running our app\footnote{\url{https://github.com/ARTrate/ARTrate-Android}}.
-The app forwards the data from the sensor via OSC to a specified network address. Because
-the data is send via UDP the app is not aware of possible packet drops or a wrongly set address.
+standard. These sensors are connected to an Android phone running our app\footnote{\url{https://github.com/ARTrate/ARTrate-Android}}. The app forwards the data from the sensor via OSC to a specified network address.
+Because the data is send via UDP, the app is not aware of possible packet drops or a wrongly set address.
 
 \subsection{custom}
 \begin{itemize}
