@@ -175,7 +175,9 @@ scipy libraries for signal processing. As a protocol, OSC is beneficial due to b
 to implement while remaining fairly versatile in regard to the payloads it supports. \\
 The server can serve in two different ways: On the one hand, it can focus solely on data gathering and signal 
 processing while only serving as a gateway, sending the processed data via OSC to arbitrary effect
-engines, e.g. Ableton. This makes the integration simple, especially if the artist can use his/her accustomed software and setups. However, if no such third party software is available or desired, the server supports a variation of effects to demonstrate the capabilities of the sensor setups. It incorporates two rudimentary
+engines, e.g. Ableton. This makes the integration simple, especially if the artist can use his/her accustomed
+software and setups. However, if no such third party software is available or desired, the server supports a
+variation of effects to demonstrate the capabilities of the sensor setups. It incorporates two rudimentary
 sound effect settings based on the heart rate, a visual representation of the history of the heart rate
 and a color change of the history representation based on the respiration rate.\\
 As the server receives data from multiple entities per bio signal type, it can process them in a 
@@ -188,23 +190,22 @@ the recording of the respiration rate.
 \subsection{commercial}
 
 The commercial setup consists of any heart rate sensor supporting the Bluetooth Low Energy
-standard. These sensors are connected to an Android phone running our app\footnote{\url{https://github.com/ARTrate/ARTrate-Android}}. The app forwards the data from the sensor via OSC to a specified network address.
+standard. These sensors are connected to an Android phone running our app\footnote{\url{https://github.com/ARTrate/ARTrate-Android}}.
+The app forwards the data from the sensor via OSC to a specified network address.
 Because the data is send via UDP, the app is not aware of possible packet drops or a wrongly set address.
 
 \subsection{custom}
-The custom sensor setup is made up of a PPG sensor, a three-axis accelerometer and an ESP32 module. Power supply is provided by a standard power bank. As heart rate sensor a BH1792GLC from Rohm Semiconductor is used. This device drives green LEDs and stores the intensity of light reflected from human body in registers.[Datenblatt BH1792GLC] These registers are read out via I2C by the ESP32 module every $20ms$. The power for the green LEDs has to be adjusted depending on the position where the sensor is placed on human body. \\
-Respiration rate is calculated on the server based on data of the accelerometer MMA8452Q of NXP Semiconductors. The output data rate is preset to $50Hz$ and the registers of the accelerometer are read out via I2C as well. The data is directly forwarded to the server by the ESP32 module using OSC over Wifi. The OSC message constists of a header with information about type of data (heart rate or respiration rate) and a hard coded ID to distinguish different custom sensor systems, as well as the data itself. \\
-The proprietary casing for the sensors, ESP32 module and wiring was 3D-printed and the whole setup is shown in figure ???.
-
-\begin{itemize}
-  \item ESP32
-  \item PPG Sensor
-  \item Acceleration Sensor
-  \item standard powerbank
-  \item OSC over WiFi
-  \item Signal postprocessing on server
-  \item 3D-Printed case
-\end{itemize}
+The custom sensor setup is made up of a PPG sensor, a three-axis accelerometer and an ESP32 module. Power supply
+is provided by a standard USB power bank. As heart rate sensor a BH1792GLC from Rohm Semiconductor is used.
+This device drives green LEDs and stores the intensity of light reflected from human body in registers.[Datenblatt BH1792GLC]
+These registers are read out via I2C by the ESP32 module every $20ms$. The power for the green LEDs has to
+be adjusted depending on the position where the sensor is placed on human body. \\
+Respiration rate is calculated on the server based on data of the accelerometer MMA8452Q of NXP Semiconductors.
+The output data rate is preset to $50Hz$ and the registers of the accelerometer are read out via I2C as well.
+The data is directly forwarded to the server by the ESP32 module using OSC over Wifi. The OSC message consists of a
+header with information about type of data (heart rate or respiration rate) and a hard coded ID to distinguish
+different custom sensor systems, as well as the data itself. \\
+The proprietary casing for the sensors, ESP32 module and wiring was 3D-printed and the whole setup is shown in figure~\ref{fig:setup}.
 
 \section{Results}
 
