@@ -55,7 +55,7 @@
     \textbf{Armin Lauble}\\
     \affaddr{University of Freiburg}\\
     \email{armin.lauble@neptun.uni-freiburg.de} } \vfil \alignauthor{%
-    \textbf{Peter Härlen}\\
+    \textbf{Peter H\"arlen}\\
     \affaddr{University of Freiburg}\\
     \email{peter.haerlen@students.uni-freiburg.de} }\alignauthor{%
     \textbf{Maximilian Rohland}\\
@@ -186,7 +186,7 @@ configurable way, i.e. using an overall average, the ratio of highest and lowest
 individually. \\
 The data is gathered by two sensor setups, one based on commercial products, which an artist or
 listener might already have at hand, and another custom-built solution. Only the latter supports
-the recording of the respiration rate. A schematic view of the whole setup is shown in figure~\ref{fig:setup}.
+the recording of the respiration rate. A schematic view of the whole setup is shown in figure \ref{fig:setup}.
 
 \subsection{commercial}
 
@@ -199,7 +199,8 @@ Because the data is send via UDP, the app is not aware of possible packet drops 
   \begin{minipage}{\marginparwidth}
     \centering
     \includegraphics[width=0.9\marginparwidth]{figures/topology}
-    \caption{Schematic view of the sensor and server setup}~\label{fig:setup}
+    \caption{Schematic view of the sensor and server setup}
+    \label{fig:setup}
   \end{minipage}
 \end{marginfigure}
 
@@ -214,7 +215,7 @@ Because the data is send via UDP, the app is not aware of possible packet drops 
 \subsection{custom}
 The custom sensor setup is made up of a PPG sensor, a three-axis accelerometer and an ESP32 module. Power supply
 is provided by a standard USB power bank. As heart rate sensor a BH1792GLC from Rohm Semiconductor is used.
-This device drives green LEDs and stores the intensity of light reflected from human body in registers.[Datenblatt BH1792GLC]
+This device drives green LEDs and stores the intensity of light reflected from human body in registers\cite{heartratesensor}.
 These registers are read out via I2C by the ESP32 module every $20ms$. The power for the green LEDs has to
 be adjusted depending on the position where the sensor is placed on human body. \\
 Respiration rate is calculated on the server based on data of the accelerometer MMA8452Q of NXP Semiconductors.
