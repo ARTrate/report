@@ -158,7 +158,8 @@ as long as they support the Bluetooth Low Energy standard.
 
 \subsection{Respiration Rate}
 
-To measure the respiration rate we use a three dimensional accelerometer. The recorded
+To measure the respiration rate we use a three dimensional accelerometer that is placed on the thorax
+of the artist or listener. The recorded
 acceleration values are analysed using a setup developed by Maximilian Kurscheidt for
 the surveillance of hospital patients\cite{kurscheidt2016open}.
 
@@ -194,11 +195,19 @@ standard. These sensors are connected to an Android phone running our app\footno
 The app forwards the data from the sensor via OSC to a specified network address.
 Because the data is send via UDP, the app is not aware of possible packet drops or a wrongly set address.
 
-\begin{marginfigure}[-10pc]
+\begin{marginfigure}[-24pc]
   \begin{minipage}{\marginparwidth}
     \centering
     \includegraphics[width=0.9\marginparwidth]{figures/topology}
     \caption{Schematic view of the sensor and server setup}~\label{fig:setup}
+  \end{minipage}
+\end{marginfigure}
+
+\begin{marginfigure}[-3pc]
+  \begin{minipage}{\marginparwidth}
+    \centering
+    \includegraphics[width=0.9\marginparwidth]{figures/sensor}
+    \caption{Custom sensor setup}~\label{fig:sensor}
   \end{minipage}
 \end{marginfigure}
 
@@ -213,7 +222,8 @@ The output data rate is preset to $50Hz$ and the registers of the accelerometer 
 The data is directly forwarded to the server by the ESP32 module using OSC over Wifi. The OSC message consists of a
 header with information about type of data (heart rate or respiration rate) and a hard coded ID to distinguish
 different custom sensor systems, as well as the data itself. \\
-The proprietary casing for the sensors, ESP32 module and wiring was 3D-printed.
+The proprietary casing for the sensors, ESP32 module and wiring was 3D-printed. The finished sensor can be seen
+in figure~\ref{fig:sensor} and is attached to the upper arm.
 
 \section{Results}
 
