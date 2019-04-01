@@ -103,13 +103,13 @@
 
 % Do not change the page size or page settings.
 \begin{abstract}
-  The human body continuously produces a wide range of bio signals. The most commonly
+  The human body continuously produces a wide range of biosignals. The most commonly
   mentioned is the heart rate, but there are other measurable values such as the rate of 
-  respiration. Although usually obtained for medical reasons, incorporating these bio signals
+  respiration or the skin conductivity. Although usually obtained for medical reasons, incorporating these bio signals
   into musical performances can make art more interactive than ever. When measured from 
   musicians and their audience, the signals can be used to influence sound, light or other 
   effects employed during a performance in real-time.
-  This paper describes a hard- and software setup which is designed and targeted for this 
+  This paper describes a hard- and software setup which is designed for and targeted at this 
   application. It measures the heart and respiration rate, post-processes it and distributes
   the extracted information via open standards to third party applications for the desired
   art effects.
@@ -122,49 +122,49 @@
 
 \section{Introduction}
 The effects of music to the human body have been fascinating researchers and led to
-many papers being released on that topic. It has been proven by many studies that
-different kinds of music make a different impact on, amongst others, the heart rate and
-respiration rate of the listener \cite{dousty,shin,tsuroka,inesta2008heart}. No wonder 
-that using bio signals as an active component in the artistic context has raised the 
+many publications on that topic. It has been proven by many studies that
+different kinds of music have a different impact on, amongst others, the heart rate and
+respiration rate of the listener \cite{dousty,shin,tsuroka,inesta2008heart}. Due to this research
+using bio signals as an active component in the artistic context has raised the 
 interest of people working in performing arts. Even though artists have been looking into 
 biosignal-driven art as early as in the 1960s \cite{history_biosignal_art}, the development
-in wearable devices during the recent years has opened up a huge range of new and, above
+of wearable devices during the recent years has opened up a huge range of new and, above
 all, more practical possibilities. \\
-In this project, the heart respiration rate of the artist as well as an arbitrary number
+In this project, the heart and respiration rate of the artist as well as an arbitrary number
 of listeners are measured, recorded and transformed into various effects embedded into the
 artist's performance. By choosing those specific bio signals, this opens up three different
 dimensions: On the one hand, the artist can use the recorded bio data as a form of direct
 feedback from the audience. Secondly, by influencing the performance itself through their
 own body, and respectively through their reaction, the audience functions as a direct feedback
-loop and is, in an exciting way, invited to participate. And lastly, using a controllable
-bio signal such as the respiration rate, provides the additional possibility to trigger specific
+loop and is invited to participate. And lastly, using a controllable
+bio signal such as the respiration rate provides the additional possibility to trigger specific
 effects deliberately.
 
 \section{Technical Background}
 
 \subsection{Heart Rate}
 
-The heart rate is most commonly measured using the ``photopletysmogram'' technology (PPG).
+Regarding wearable consumer devices the heart rate is most commonly measured using the ``photopletysmography'' technology (PPG).
 It uses light emitting diodes to illuminate a patch of skin, e.g. on the wrist, upper arm
 or finger tip and measures the light absorption of the skin with a photo diode. The frequency
 between peaks of the absorption translates to the heart rate. %TODO: Sensorpeople: explain & specify
 
-If it is compared to other methods, it offers the big advantage of being very easy and fast
+If it is compared to other methods, it offers the advantage of being very easy and fast
 to use and not having the necessity for chest straps or multiple electrodes. It is widely used
-in modern fitness and lifestyle devices like sports trackers and smart watches.
-
-However, it is possible to use our infrastructure with sensors using other technologies
+in modern fitness and lifestyle devices like sports trackers and smart watches. Other methods,
+like the electrocardiography offer better precision but are more complex to apply in the
+environment of a musical performance. However, it is possible to use our infrastructure with sensors using other technologies
 as long as they support the Bluetooth Low Energy standard.
 
 \subsection{Respiration Rate}
 
 To measure the respiration rate we use a three dimensional accelerometer that is placed on the thorax
 of the artist or listener. The recorded
-acceleration values are analysed using a setup developed by Maximilian Kurscheidt for
+acceleration values are analysed using a setup for
 the surveillance of hospital patients\cite{kurscheidt2016open}.
 
-At first the data is filtered via a bandpass filter, removing frequencies lower and higher
-than a healthy person's normal respiration rate bandwidth. Afterwards, the signal goes through
+First the data is filtered via a bandpass filter, removing frequencies lower and higher
+than a healthy person's normal respiration rate bandwidth. Afterwards, the signal is processed via
 Fast Fourier Transformation and the spectral powers are calculated, from which the frequency is
 derived. %TODO: ESE-People: explain & specify
 
