@@ -177,7 +177,7 @@ to implement while remaining fairly versatile in regard to the payloads it suppo
 The server can serve in two different ways: On the one hand, it can focus solely on data gathering and signal 
 processing while only serving as a gateway, sending the processed data via OSC to arbitrary effect
 engines, e.g. Ableton. This makes the integration simple, especially if the artist can use his/her accustomed
-software and setups. However, if no such third party software is available or desired, the server supports a
+software and setups. On the other hand, if no such third party software is available or desired, the server supports a
 variation of effects to demonstrate the capabilities of the sensor setups. It incorporates two rudimentary
 sound effect settings based on the heart rate, a visual representation of the history of the heart rate
 and a color change of the history representation based on the respiration rate.\\
@@ -193,7 +193,7 @@ the recording of the respiration rate. A schematic view of the whole setup is sh
 The commercial setup consists of any heart rate sensor supporting the Bluetooth Low Energy
 standard. These sensors are connected to an Android phone running our app\footnote{\url{https://github.com/ARTrate/ARTrate-Android}}.
 The app forwards the data from the sensor via OSC to a specified network address.
-Because the data is send via UDP, the app is not aware of possible packet drops or a wrongly set address.
+Because the data is sent via UDP, the app is not aware of possible packet drops or a wrongly set address.
 
 \begin{marginfigure}[-24pc]
   \begin{minipage}{\marginparwidth}
@@ -217,8 +217,8 @@ The custom sensor setup is made up of a PPG sensor, a three-axis accelerometer a
 is provided by a standard USB power bank. As heart rate sensor a BH1792GLC from Rohm Semiconductor is used.
 This device drives green LEDs and stores the intensity of light reflected from human body in registers\cite{heartratesensor}.
 These registers are read out via I2C by the ESP32 module every $20ms$. The power for the green LEDs has to
-be adjusted depending on the position where the sensor is placed on human body. \\
-Respiration rate is calculated on the server based on data of the accelerometer MMA8452Q of NXP Semiconductors.
+be adjusted depending on the position where the sensor is placed on the human body. \\
+Respiration rate is calculated on the server based on data of the accelerometer MMA8452Q by NXP Semiconductors.
 The output data rate is preset to $50Hz$ and the registers of the accelerometer are read out via I2C as well.
 The data is directly forwarded to the server by the ESP32 module using OSC over Wifi. The OSC message consists of a
 header with information about type of data (heart rate or respiration rate) and a hard coded ID to distinguish
@@ -231,11 +231,7 @@ in figure~\ref{fig:sensor} and is attached to the upper arm.
 We have been able to extract both the heart rate and the respiration rate using a hardware setup that can be
 worn easily on the body. Both values are accurate enough for the requirements of our goal, which has been
 effect generation based on the gathered bio signals. However, only the heart rate yields a bandwidth of values
-that is wide enough to be interesting for effects.
-
-The respiration rate does only change in a window between 12 and 16 breaths per minute under normal conditions.
-Furthermore, our implementation can only change its value in integer values, resulting in either a very small
-effect range or sharp, abrupt changes in the effect. %TODO: signalprocessing: explain, peak counting...
+that is wide enough to be interesting for effects. The respiration rate only changes in a window between 12 and 16 breaths per minute under normal conditions. Furthermore, our implementation can only change its value in integer values, resulting in either a very small effect range or sharp, abrupt changes in the effect. %TODO: signalprocessing: explain, peak counting...
 
 While it might be feasible from a technical point of view to control elements of a performance using the respiration
 rate of the performer, it is not feasible to do so from the performing point of view. Our method does not detect
@@ -250,7 +246,7 @@ heart rate over time.
 
 During our test runs two distinctive patterns emerged time and again: First, the heart rate of a performer
 drops significantly after starting the performance. Second, regarding a listener, the heart rate slowly rises
-in ``suspension building'' sections and drops sharply on their conclusion. This could be used to highlight
+in suspenseful sections and drops sharply on their conclusion. This could be used to highlight
 breaks in a performance using effects based on the heart rate.
 
 \balance{} 
