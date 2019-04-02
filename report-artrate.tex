@@ -144,10 +144,9 @@ effects deliberately.
 
 \subsection{Heart Rate}
 
-Regarding wearable consumer devices the heart rate is most commonly measured using the ``photopletysmography'' technology (PPG).
+Regarding wearable consumer devices the heart rate nowadays is most commonly measured using the ``photopletysmography'' technology (PPG).
 It uses light emitting diodes to illuminate a patch of skin, e.g. on the wrist, upper arm
-or finger tip and measures the light absorption of the skin with a photo diode. The frequency
-between peaks of the absorption translates to the heart rate. %TODO: Sensorpeople: explain & specify
+or finger tip and measures the light absorption/reflection of the skin with a photo diode. As the blood absorbs light depending on its volume, which changes during the cardiac cycle, the frequency between peaks of reflected light translates to the heart rate.
 
 If it is compared to other methods, it offers the advantage of being very easy and fast
 to use and not having the necessity for chest straps or multiple electrodes. It is widely used
@@ -213,19 +212,17 @@ Because the data is sent via UDP, the app is not aware of possible packet drops 
 \end{marginfigure}
 
 \subsection{custom}
-The custom sensor setup is made up of a PPG sensor, a three-axis accelerometer and an ESP32 module. Power supply
-is provided by a standard USB power bank. As heart rate sensor a BH1792GLC from Rohm Semiconductor is used.
+The custom sensor setup is made up of a PPG sensor, a three-axis accelerometer and an ESP32 micro-controller development board. The Power is supplied by a standard USB power bank. As heart rate sensor a BH1792GLC from Rohm Semiconductor is used.
 This device drives green LEDs and stores the intensity of light reflected from human body in registers\cite{heartratesensor}.
 These registers are read out via I2C by the ESP32 module every $20ms$. The power for the green LEDs has to
 be adjusted depending on the position where the sensor is placed on the human body. \\
-Respiration rate is calculated on the server based on data of the accelerometer MMA8452Q by NXP Semiconductors.
+Respiration rate is gathered based on data of the accelerometer MMA8452Q by NXP Semiconductors.\\
 The output data rate is preset to $50Hz$ and the registers of the accelerometer are read out via I2C as well.
-The data is directly forwarded to the server by the ESP32 module using OSC over Wifi. The OSC message consists of a
-header with information about type of data (heart rate or respiration rate) and a hard coded ID to distinguish
-different custom sensor systems, as well as the data itself. \\
-The proprietary casing for the sensors, ESP32 module and wiring was 3D-printed. The finished sensor can be seen
-in figure~\ref{fig:sensor} and is attached to the upper arm.
-
+The raw data from both sensors are directly forwarded to the server by the ESP32 module using OSC over Wifi. The OSC message consists of a
+header with information about type of data (heart rate or respiration rate) and an sensor ID to distinguish
+different custom sensor-systems, as well of the data itself. \\
+The proprietary casing for the sensors, ESP32 development board and sensor connections was 3D-printed. The finished sensor can be seen in figure~\ref{fig:sensor} and can be attached to the lower or upper arm, whereas the small accelerometer box should be taped
+on the thorax. 
 \section{Results}
 
 We have been able to extract both the heart rate and the respiration rate using a hardware setup that can be
