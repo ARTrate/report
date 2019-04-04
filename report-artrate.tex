@@ -117,8 +117,8 @@
 
 \keywords{\plainkeywords}
 
-\category{H.5.m}{Information interfaces and presentation (e.g.,
-  HCI)}{Miscellaneous}
+%\category{H.5.m}{Information interfaces and presentation (e.g.,
+%  HCI)}{Miscellaneous}
 
 \section{Introduction}
 The effects of music to the human body have been fascinating researchers and led to
@@ -144,11 +144,24 @@ effects deliberately.
 
 \subsection{Heart Rate}
 
-Regarding wearable consumer devices the heart rate nowadays is most commonly measured using the ``photopletysmography'' technology (PPG).
-It uses light emitting diodes to illuminate a patch of skin, e.g. on the wrist, upper arm
-or finger tip and measures the light absorption/reflection of the skin with a photo diode. As the blood absorbs light depending on its volume, which changes during the cardiac cycle, the frequency between peaks of reflected light translates to the heart rate.
+Regarding wearable consumer devices the heart rate nowadays is most commonly measured using the ``photopletysmography'' technology 
+(PPG). It uses light emitting diodes to illuminate a patch of skin, e.g. on the wrist, upper arm
+or finger tip and measures the light absorption/reflection of the skin with a photo diode. As the blood absorbs light depending on
+its volume, which changes during the cardiac cycle, the frequency between peaks of reflected light translates to the heart rate.
+A typical raw data series of the heart rate sensor is shown in figure \ref{fig:raw_data_HR}. The measured sequence exhibits abrupt 
+jumps where it would be hard to derive the heart rate. Hence, appropriate filtering is necessary as explained in the following 
+respiration rate section.
 
-If it is compared to other methods, it offers the advantage of being very easy and fast
+\begin{marginfigure}[-30pc]
+  \begin{minipage}{\marginparwidth}
+    \centering
+    \includegraphics[width=\marginparwidth]{figures/raw_data_heartrate}
+    \caption{Typical heart rate raw data series}
+    \label{fig:raw_data_HR}
+  \end{minipage}
+\end{marginfigure}
+
+If PPG technology is compared to other methods, it offers the advantage of being very easy and fast
 to use and not having the necessity for chest straps or multiple electrodes. It is widely used
 in modern fitness and lifestyle devices like sports trackers and smart watches. Other methods,
 like the electrocardiography offer better precision but are more complex to apply in the
@@ -156,16 +169,13 @@ environment of a musical performance. However, it is possible to use our infrast
 as long as they support the Bluetooth Low Energy standard.
 
 \subsection{Respiration Rate}
+To measure the respiration rate we use a three-axis accelerometer that is placed on the thorax of the artist or listener. The 
+recorded acceleration values are analysed using a setup for the surveillance of hospital patients \cite{kurscheidt2016open}.
 
-To measure the respiration rate we use a three dimensional accelerometer that is placed on the thorax
-of the artist or listener. The recorded
-acceleration values are analysed using a setup for
-the surveillance of hospital patients\cite{kurscheidt2016open}.
-
-First the data is filtered via a bandpass filter, removing frequencies lower and higher
-than a healthy person's normal respiration rate bandwidth. Afterwards, the signal is processed via
-Fast Fourier Transformation and the spectral powers are calculated, from which the frequency is
-derived. %TODO: ESE-People: explain & specify
+First the data is filtered via a band-pass filter, removing frequencies lower and higher than a healthy person's normal
+respiration rate bandwidth. The filtering ensures, that movements of the person don't falsify the following calculations. 
+Afterwards, the signals are processed via Fast Fourier Transformation to calculate the spectral powers
+(x-, y- and z-axis separately). The spectral powers are added and the frequency is derived by a peak detection algorithm.
 
 \section{Equipment \& Setup}
 
@@ -194,7 +204,7 @@ standard. These sensors are connected to an Android phone running our app\footno
 The app forwards the data from the sensor via OSC to a specified network address.
 Because the data is sent via UDP, the app is not aware of possible packet drops or a wrongly set address.
 
-\begin{marginfigure}[-24pc]
+\begin{marginfigure}[-36pc]
   \begin{minipage}{\marginparwidth}
     \centering
     \includegraphics[width=0.9\marginparwidth]{figures/topology}
@@ -203,7 +213,7 @@ Because the data is sent via UDP, the app is not aware of possible packet drops 
   \end{minipage}
 \end{marginfigure}
 
-\begin{marginfigure}[-3pc]
+\begin{marginfigure}[-7pc]
   \begin{minipage}{\marginparwidth}
     \centering
     \includegraphics[width=0.9\marginparwidth]{figures/sensor}
@@ -212,23 +222,28 @@ Because the data is sent via UDP, the app is not aware of possible packet drops 
 \end{marginfigure}
 
 \subsection{custom}
-The custom sensor setup is made up of a PPG sensor, a three-axis accelerometer and an ESP32 micro-controller development board. The Power is supplied by a standard USB power bank. As heart rate sensor a BH1792GLC from Rohm Semiconductor is used.
+The custom sensor setup is made up of a PPG sensor, a three-axis accelerometer and an ESP32 microcontroller development board.
+Power supply is provided by a standard USB power bank. As heart rate sensor a BH1792GLC from Rohm Semiconductor is used.
 This device drives green LEDs and stores the intensity of light reflected from human body in registers\cite{heartratesensor}.
 These registers are read out via I2C by the ESP32 module every $20ms$. The power for the green LEDs has to
 be adjusted depending on the position where the sensor is placed on the human body. \\
-Respiration rate is gathered based on data of the accelerometer MMA8452Q by NXP Semiconductors.\\
+Respiration rate is calculated on the server based on data of the accelerometer MMA8452Q by NXP Semiconductors.
 The output data rate is preset to $50Hz$ and the registers of the accelerometer are read out via I2C as well.
-The raw data from both sensors are directly forwarded to the server by the ESP32 module using OSC over Wifi. The OSC message consists of a
-header with information about type of data (heart rate or respiration rate) and an sensor ID to distinguish
-different custom sensor-systems, as well of the data itself. \\
-The proprietary casing for the sensors, ESP32 development board and sensor connections was 3D-printed. The finished sensor can be seen in figure~\ref{fig:sensor} and can be attached to the lower or upper arm, whereas the small accelerometer box should be taped
-on the thorax. 
+The raw data from both sensors are directly forwarded to the server by the ESP32 module using OSC over Wifi. The OSC message
+consists of a header with information about type of data (heart rate or respiration rate) and a hard coded sensor ID to distinguish
+different custom sensor-systems, as well as the data itself. \\
+The proprietary casing for the sensors, ESP32 development board and sensor connections was 3D-printed. The finished sensor can be
+seen in figure~\ref{fig:sensor} and can be attached to the lower or upper arm, whereas the small accelerometer box should be 
+sticked to the thorax.
+ 
 \section{Results}
 
 We have been able to extract both the heart rate and the respiration rate using a hardware setup that can be
 worn easily on the body. Both values are accurate enough for the requirements of our goal, which has been
 effect generation based on the gathered bio signals. However, only the heart rate yields a bandwidth of values
-that is wide enough to be interesting for effects. The respiration rate only changes in a window between 12 and 16 breaths per minute under normal conditions. Furthermore, our implementation can only change its value in integer values, resulting in either a very small effect range or sharp, abrupt changes in the effect. %TODO: signalprocessing: explain, peak counting...
+that is wide enough to be interesting for effects. The respiration rate only changes in a window between 12 and 16 breaths per 
+minute under normal conditions. Furthermore, our implementation can only change its value in integer values, resulting in either a 
+very small effect range or sharp, abrupt changes in the effect. %TODO: signalprocessing: explain, peak counting...
 
 While it might be feasible from a technical point of view to control elements of a performance using the respiration
 rate of the performer, it is not feasible to do so from the performing point of view. Our method does not detect
