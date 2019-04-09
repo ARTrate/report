@@ -144,15 +144,7 @@ effects deliberately.
 
 \subsection{Heart Rate}
 
-Regarding wearable consumer devices the heart rate nowadays is most commonly measured using the ``photopletysmography'' technology 
-(PPG). It uses light emitting diodes to illuminate a patch of skin, e.g. on the wrist, upper arm
-or finger tip and measures the light absorption/reflection of the skin with a photo diode. As the blood absorbs light depending on
-its volume, which changes during the cardiac cycle, the frequency between peaks of reflected light translates to the heart rate.
-A typical raw data series of the heart rate sensor is shown in figure \ref{fig:raw_data_HR}. The measured sequence exhibits abrupt 
-jumps where it would be hard to derive the heart rate. Hence, appropriate filtering is necessary as explained in the following 
-respiration rate section.
-
-\begin{marginfigure}[-30pc]
+\begin{marginfigure}[-10pc]
   \begin{minipage}{\marginparwidth}
     \centering
     \includegraphics[width=\marginparwidth]{figures/raw_data_heartrate}
@@ -160,6 +152,14 @@ respiration rate section.
     \label{fig:raw_data_HR}
   \end{minipage}
 \end{marginfigure}
+
+Regarding wearable consumer devices the heart rate nowadays is most commonly measured using the ``photopletysmography'' technology 
+(PPG). It uses light emitting diodes to illuminate a patch of skin, e.g. on the wrist, upper arm
+or finger tip and measures the light absorption/reflection of the skin with a photo diode. As the blood absorbs light depending on
+its volume, which changes during the cardiac cycle, the frequency between peaks of reflected light translates to the heart rate.
+A typical raw data series of the heart rate sensor is shown in figure \ref{fig:raw_data_HR}. The measured sequence exhibits abrupt 
+jumps where it would be hard to derive the heart rate. Hence, appropriate filtering is necessary as explained in the following 
+respiration rate section.
 
 If PPG technology is compared to other methods, it offers the advantage of being very easy and fast
 to use and not having the necessity for chest straps or multiple electrodes. It is widely used
@@ -204,7 +204,7 @@ standard. These sensors are connected to an Android phone running our app\footno
 The app forwards the data from the sensor via OSC to a specified network address.
 Because the data is sent via UDP, the app is not aware of possible packet drops or a wrongly set address.
 
-\begin{marginfigure}[-36pc]
+\begin{marginfigure}[-44pc]
   \begin{minipage}{\marginparwidth}
     \centering
     \includegraphics[width=0.9\marginparwidth]{figures/topology}
@@ -213,7 +213,7 @@ Because the data is sent via UDP, the app is not aware of possible packet drops 
   \end{minipage}
 \end{marginfigure}
 
-\begin{marginfigure}[-7pc]
+\begin{marginfigure}[-12pc]
   \begin{minipage}{\marginparwidth}
     \centering
     \includegraphics[width=0.9\marginparwidth]{figures/sensor}
