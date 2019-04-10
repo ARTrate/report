@@ -34,13 +34,13 @@
 % Paper metadata (use plain text, for PDF inclusion and later
 % re-using, if desired).  Use \emtpyauthor when submitting for review
 % so you remain anonymous.
-\def\plaintitle{ArtRate: Using Bio Signals To Influence Music} \def\plainauthor{First Author, Second Author, Third Author,
+\def\plaintitle{ArtRate: Using Biosignals To Influence Music} \def\plainauthor{First Author, Second Author, Third Author,
   Fourth Author}
 \def\emptyauthor{}
-\def\plainkeywords{Bio Signals; Heart Rate; Respiration Rate; Music}
+\def\plainkeywords{Biosignals; Heart Rate; Respiration Rate; Music}
 \def\plaingeneralterms{Documentation, Standardization}
 
-\title{ArtRate: Using Bio Signals To Influence Music Performances}
+\title{ArtRate: Using Biosignals To Influence Music Performances}
 
 \numberofauthors{4}
 % Notice how author names are alternately typesetted to appear ordered
@@ -105,7 +105,7 @@
 \begin{abstract}
   The human body continuously produces a wide range of biosignals. The most commonly
   mentioned is the heart rate, but there are other measurable values such as the rate of 
-  respiration or the skin conductivity. Although usually obtained for medical reasons, incorporating these bio signals
+  respiration or the skin conductivity. Although usually obtained for medical reasons, incorporating these biosignals
   into musical performances can make art more interactive than ever. When measured from 
   musicians and their audience, the signals can be used to influence sound, light or other 
   effects employed during a performance in real-time.
@@ -125,19 +125,19 @@ The effects of music to the human body have been fascinating researchers and led
 many publications on that topic. It has been proven by many studies that
 different kinds of music have a different impact on, amongst others, the heart rate and
 respiration rate of the listener \cite{dousty,shin,tsuroka,inesta2008heart}. Due to this research
-using bio signals as an active component in the artistic context has raised the 
+using biosignals as an active component in the artistic context has raised the 
 interest of people working in performing arts. Even though artists have been looking into 
 biosignal-driven art as early as in the 1960s \cite{history_biosignal_art}, the development
 of wearable devices during the recent years has opened up a huge range of new and, above
 all, more practical possibilities. \\
 In this project, the heart and respiration rate of the artist as well as an arbitrary number
 of listeners are measured, recorded and transformed into various effects embedded into the
-artist's performance. By choosing those specific bio signals, this opens up three different
+artist's performance. By choosing those specific biosignals, this opens up three different
 dimensions: On the one hand, the artist can use the recorded bio data as a form of direct
 feedback from the audience. Secondly, by influencing the performance itself through their
 own body, and respectively through their reaction, the audience functions as a direct feedback
 loop and is invited to participate. And lastly, using a controllable
-bio signal such as the respiration rate provides the additional possibility to trigger specific
+biosignal such as the respiration rate provides the additional possibility to trigger specific
 effects deliberately.
 
 \section{Technical Background}
@@ -190,7 +190,7 @@ software and setups. On the other hand, if no such third party software is avail
 variation of effects to demonstrate the capabilities of the sensor setups. It incorporates two rudimentary
 sound effect settings based on the heart rate, a visual representation of the history of the heart rate
 and a color change of the history representation based on the respiration rate.\\
-As the server receives data from multiple entities per bio signal type, it can process them in a 
+As the server receives data from multiple entities per biosignal type, it can process them in a 
 configurable way, i.e. using an overall average, the ratio of highest and lowest value or each source
 individually. \\
 The data is gathered by two sensor setups, one based on commercial products, which an artist or
@@ -240,7 +240,7 @@ sticked to the thorax.
 
 We have been able to extract both the heart rate and the respiration rate using a hardware setup that can be
 worn easily on the body. Both values are accurate enough for the requirements of our goal, which has been
-effect generation based on the gathered bio signals. However, only the heart rate yields a bandwidth of values
+effect generation based on the gathered biosignals. However, only the heart rate yields a bandwidth of values
 that is wide enough to be interesting for effects. The respiration rate only changes in a window between 12 and 16 breaths per 
 minute under normal conditions. Furthermore, our implementation can only change its value in integer values, resulting in either a 
 very small effect range or sharp, abrupt changes in the effect.
